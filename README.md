@@ -2,6 +2,7 @@
 
 ##### Raggi/Collections
 * RCollection
+* RParamsCollection
 * RQueue
 * RStack
 
