@@ -1,12 +1,12 @@
 #### Raggi prototype
 
-##### Raggi/Collections
+##### Collections
 * RCollection
 * RParamsCollection
 * RQueue
 * RStack
 
-##### Raggi/Core
+##### Core
 * RCoreComponent
 * RController
 * RModule
