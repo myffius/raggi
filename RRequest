@@ -1,0 +1,13 @@
+<?php
+
+class RRequest extends RComponent
+{
+	const METHOD_POST   = 'post';
+	const METHOD_GET    = 'get';
+	const METHOD_AJAX   = 'ajax';
+	const METHOD_DELETE = 'delete';
+
+ 	protected $_method;
+
+	public function query($param, $value = null)
+}
