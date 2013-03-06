@@ -1,6 +1,6 @@
 #### Raggi prototype
 
-###### Raggi\Core
+##### Raggi/Core
 * RCollection
 * RQueue
 * RStack
