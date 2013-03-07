@@ -34,6 +34,12 @@
 * RImage
 * RUploadedFile
 
+##### Languages
+* RHtml
+* RJavaScript
+* RJQuery
+* RJson
+
 ##### Logs
 * RLogger
 * RDbLogger
