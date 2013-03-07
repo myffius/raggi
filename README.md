@@ -16,6 +16,7 @@
 * RController
 * REvent
 * RModule
+* RResourceManager
 
 ##### Db
 * RDbColumn
