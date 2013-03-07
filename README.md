@@ -22,10 +22,25 @@
 * RDbConnection
 * RDbQuery
 * RDbRecord
+* RDbTable
 
 ##### Errors
 * RErrorHandler
 * RException
+* RHttpException
+
+##### FileSystem
+* RFile
+* RImage
+* RUploadedFile
+
+##### Logs
+* RLogger
+* RDbLogger
+* REmailLogger
+* RFileLogger
+* RLogRouter
+* ROutputLogger
 
 ##### Request
 * RCookie
