@@ -54,12 +54,24 @@
 * RRequest
 * RResponse
 
+##### Session
+* RDbSession
+* RNativeSession
+* RSession
+* 
 ##### User
 * RUserAccess
 * RUser
 * RUserRole
 
-##### Session
-* RDbSession
-* RNativeSession
-* RSession
+##### Validators
+* RDateValidator
+* RDateTimeValidator
+* REmailValidator
+* RExpressionValidator
+* RFileValidator
+* RIpValidator
+* RLengthValidator
+* RTimeValidator
+* RUrlValidator
+* RValidator
