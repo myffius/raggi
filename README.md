@@ -1,4 +1,4 @@
-#### Raggi prototype
+#### Raggi scheme
 
 ##### Auth
 * RHttpAuth
