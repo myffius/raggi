@@ -1,7 +1,12 @@
 #### Raggi prototype
 
+##### Auth
+* RHttpAuth
+* RDbAuth
+
 ##### Collections
 * RCollection
+* RList
 * RParamsCollection
 * RQueue
 * RStack
@@ -17,3 +22,19 @@
 * RDbConnection
 * RDbQuery
 * RDbRecord
+
+##### Errors
+* RErrorHandler
+* RException
+
+##### Request
+* RCookie
+* RDbSession
+* RRequest
+* RResponse
+* RSession
+
+##### User
+* RUserAccess
+* RUser
+* RUserRole
