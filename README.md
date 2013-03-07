@@ -29,12 +29,15 @@
 
 ##### Request
 * RCookie
-* RDbSession
 * RRequest
 * RResponse
-* RSession
 
 ##### User
 * RUserAccess
 * RUser
 * RUserRole
+
+##### Session
+* RDbSession
+* RNativeSession
+* RSession
