@@ -22,7 +22,7 @@
 			else if ($this->_imageType == IMAGETYPE_PNG)
 				$this->_image = imagecreatefrompng($this->_imagePath);
 			else
-				throw new CException('Unsupported image type');
+				throw new RException('Неподдерживаемый тип изображения');
 	
 			return $this;
 		}
