@@ -6,7 +6,7 @@
 		protected $_imagePath;
 		protected $_imageType;
 		protected $_imageMime;
-	
+
 		public function load($filePath)
 		{
 			$this->_imagePath = $filePath;
@@ -26,7 +26,7 @@
 	
 			return $this;
 		}
-	
+
 		public function save($filePath, $imageType = IMAGETYPE_JPEG, $compression = 75)
 		{
 			return $this->outputImage($filePath, $imageType, $compression);
@@ -36,7 +36,7 @@
 		{
 			return $this->outputImage(null, $imageType, $compression);
 		}
-	
+
 		protected function outputImage($filePath = null, $imageType = IMAGETYPE_JPEG, $compression = 75)
 		{
 			if($imageType == IMAGETYPE_JPEG)
@@ -47,7 +47,7 @@
 				imagepng($this->_image, $filePath);
 			return $this;
 		}
-	
+
 		public function resize($width, $height)
 		{
 			$image = imagecreatetruecolor($width, $height);
@@ -55,7 +55,7 @@
 			$this->_image = $image;
 			return $this;
 		}
-	
+
 		public function setHeight($height, $proportions = true)
 		{
 			$width = $this->getWidth();
@@ -66,7 +66,7 @@
 			}
 			return $this->resize($width, $height);
 		}
-	
+
 		public function setWidth($width, $proportions = true)
 		{
 			$height = $this->getHeight();
@@ -77,7 +77,7 @@
 			}
 			return $this->resize($width, $height);
 		}
-	
+
 		public function setMaxSide($size)
 		{
 			$width = $this->getWidth();
@@ -88,7 +88,7 @@
 				return $this->setHeight($size);
 			return $this;
 		}
-	
+
 		public function setMinSide($size)
 		{
 			$width = $this->getWidth();
@@ -99,39 +99,39 @@
 				return $this->setHeight($size);
 			return $this;
 		}
-	
+
 		public function scale($scale)
 		{
 			$width = $this->getWidth() * $scale / 100;
 			$height = $this->getheight() * $scale / 100;
 			return $this->resize($width, $height);
 		}
-	
+
 		public function getWidth()
 		{
 			return imagesx($this->_image);
 		}
-	
+
 		public function getHeight()
 		{
 			return imagesy($this->_image);
 		}
-	
+
 		public function getImageType()
 		{
 			return $this->_imageType;
 		}
-	
+
 		public function toGray()
 		{
 			return $this->applyFilter(IMG_FILTER_GRAYSCALE);
 		}
-	
+
 		public function invert()
 		{
 			return $this->applyFilter(IMG_FILTER_NEGATE);
 		}
-	
+
 		public function getColorId($red, $green = null, $blue = null)
 		{
 			if (is_array($red))
@@ -141,14 +141,14 @@
 	
 			return imagecolorallocate($this->_image, $red, $green, $blue);
 		}
-	
+
 		public function gaussianBlur()
 		{
 			$gaussian = array(array(1.0, -2.0, 1.0), array(2.0, 4.0, -2.0), array(-1.0, 2.0, 1.0));
 			imageconvolution($this->_image, $gaussian, 16, 0);
 			return $this;
 		}
-	
+
 		public function colorEncode($hexColor)
 		{
 			$hexColor = trim($hexColor, '#');
@@ -166,7 +166,7 @@
 			}
 			return array($red, $green, $blue);
 		}
-	
+
 		public function colorDecode(array $rgbColor)
 		{
 			$hexColor = '#';
@@ -176,7 +176,7 @@
 	
 			return $hexColor;
 		}
-	
+
 		protected function applyFilter($filter)
 		{
 			imagefilter($this->_image, $filter);
