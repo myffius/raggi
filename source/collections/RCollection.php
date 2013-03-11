@@ -1,6 +1,6 @@
 <?php
 
-	abstract class RCollection implements IteratorAggregate, Countable
+	abstract class RCollection extends RCore implements IteratorAggregate, Countable
 	{
 		protected $_collection;
 
@@ -38,5 +38,10 @@
 		public function count()
 		{
 			// TODO: Implement count() method.
+		}
+
+		public function add($key, $value, $rewrite = false)
+		{
+
 		}
 	}
