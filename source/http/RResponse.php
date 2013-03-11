@@ -3,7 +3,7 @@
 	class RResponse extends RCore
 	{
 		public $statusCode = 200;
-		public $staticText = '';
+		public $statusText = '';
 		public $version = 1.1;
 		public $contentType = 'text/html';
 		public $content = '';
@@ -72,4 +72,9 @@
 	        510 => 'Not Extended',                                                // RFC2774
 	        511 => 'Network Authentication Required',                             // RFC6585
 	    );
+
+		public function send()
+		{
+
+		}
 	}
