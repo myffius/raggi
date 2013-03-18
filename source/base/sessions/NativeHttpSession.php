@@ -265,12 +265,11 @@ class NativeHttpSession extends BaseComponent implements SessionHandlerInterface
 		return session_save_path();
 	}
 
-	public function setSavePath($value)
+	public function setSavePath($path)
 	{
-		if(is_dir($value))
-			session_save_path($value);
+		if(is_dir($path))
+			session_save_path($path);
 		else
-			throw new CException(Yii::t('yii','CHttpSession.savePath "{path}" is not a valid directory.',
-				array('{path}'=>$value)));
+			throw new Exception('Указан некорректный путь');
 	}
 }
