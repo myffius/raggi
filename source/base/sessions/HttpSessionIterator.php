@@ -1,11 +1,13 @@
 <?php
 
 namespace raggi\base\sessions;
-
+/**
+ *
+ */
 class HttpSessionIterator implements \Iterator
 {
 	/**
-	 * @var
+	 * @var array
 	 */
 	private $_keys;
 	/**
