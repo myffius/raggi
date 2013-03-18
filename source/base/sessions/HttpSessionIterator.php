@@ -2,16 +2,20 @@
 
 namespace raggi\base\sessions;
 /**
- *
+ * Итератор для сессий.
+ * @see \raggi\base\sessions\NativeHttpSession::getIterator()
  */
 class HttpSessionIterator implements \Iterator
 {
 	/**
+	 * Ключи массива $_SESSION
 	 * @var array
 	 */
 	private $_keys;
 	/**
+	 * Текщие положение указателя в массиве ключей
 	 * @var int
+	 * @see \raggi\base\sessions\NativeHttpSession::$_keys
 	 */
 	private $_currentKeyIndex;
 
@@ -21,10 +25,9 @@ class HttpSessionIterator implements \Iterator
 		$this->_currentKeyIndex = 0;
 	}
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Return the current element
-	 * @link http://php.net/manual/en/iterator.current.php
-	 * @return mixed Can return any type.
+	 * Возвращает текущий элемент
+	 * @link http://php.net/manual/ru/iterator.current.php
+	 * @return mixed
 	 */
 	public function current()
 	{
@@ -32,10 +35,9 @@ class HttpSessionIterator implements \Iterator
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Move forward to next element
-	 * @link http://php.net/manual/en/iterator.next.php
-	 * @return void Any returned value is ignored.
+	 * Смещает указатель на следующий элемент
+	 * @link http://php.net/manual/ru/iterator.next.php
+	 * @return void
 	 */
 	public function next()
 	{
@@ -43,22 +45,19 @@ class HttpSessionIterator implements \Iterator
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Return the key of the current element
-	 * @link http://php.net/manual/en/iterator.key.php
-	 * @return mixed scalar on success, or null on failure.
+	 * Возвращает ключ текущего элемента
+	 * @link http://php.net/manual/ru/iterator.key.php
+	 * @return mixed значение, если ключ существует, иначе null
 	 */
 	public function key()
 	{
-		return $this->_keys[$this->_currentKeyIndex];
+		return isset($this->_keys[$this->_currentKeyIndex]) ? $this->_keys[$this->_currentKeyIndex] : null;
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Checks if current position is valid
-	 * @link http://php.net/manual/en/iterator.valid.php
-	 * @return boolean The return value will be casted to boolean and then evaluated.
-	 * Returns true on success or false on failure.
+	 * Выполняет проверку на валидность текущей позиции
+	 * @link http://php.net/manual/ru/iterator.valid.php
+	 * @return bool
 	 */
 	public function valid()
 	{
@@ -66,10 +65,9 @@ class HttpSessionIterator implements \Iterator
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Rewind the Iterator to the first element
-	 * @link http://php.net/manual/en/iterator.rewind.php
-	 * @return void Any returned value is ignored.
+	 * Сбрасывает указатель на первый элемент массива
+	 * @link http://php.net/manual/ru/iterator.rewind.php
+	 * @return void
 	 */
 	public function rewind()
 	{
