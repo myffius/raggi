@@ -2,11 +2,24 @@
 
 namespace raggi\base\sessions;
 
+use \raggi\base\BaseComponent;
+use \raggi\exceptions\Exception;
+
 /**
+ * Реализует механизм работы с сессией.
+ * Использует стандартный механизм хранения.
  *
+ * @property boolean $isStarted
+ * @property string $id
+ * @property string $name
+ * @property integer $count
+ * @property \raggi\base\sessions\HttpSessionIterator $iterator
  */
-class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHandlerInterface, \IteratorAggregate, \ArrayAccess, \Countable
+class NativeHttpSession extends BaseComponent implements SessionHandlerInterface, \IteratorAggregate, \ArrayAccess, \Countable
 {
+	/**
+	 *
+	 */
 	public function __construct()
 	{
 		session_set_save_handler(
@@ -20,8 +33,8 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * Returns the number of items in the session.
-	 * @return integer the number of session variables
+	 * Возращает количество элементов в сессии
+	 * @return int
 	 */
 	public function getCount()
 	{
@@ -39,11 +52,9 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Retrieve an external iterator
-	 * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
-	 * @return Traversable An instance of an object implementing <b>Iterator</b> or
-	 * <b>Traversable</b>
+	 * Возвращает итератор для объекта сессии
+	 * @link http://php.net/manual/ru/iteratoraggregate.getiterator.php
+	 * @return \raggi\base\sessions\HttpSessionIterator
 	 */
 	public function getIterator()
 	{
@@ -51,16 +62,12 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Whether a offset exists
-	 * @link http://php.net/manual/en/arrayaccess.offsetexists.php
-	 * @param mixed $offset <p>
-	 * An offset to check for.
-	 * </p>
-	 * @return boolean true on success or false on failure.
-	 * </p>
-	 * <p>
-	 * The return value will be casted to boolean if non-boolean was returned.
+	 * Определяет, существует ли заданное смещение (ключ)
+	 * Данный метод вызывается, когда используется функция isset() или
+	 * функция empty() для текущего объекта
+	 * @link http://php.net/manual/ru/arrayaccess.offsetexists.php
+	 * @param mixed $offset ключ для проверки
+	 * @return bool
 	 */
 	public function offsetExists($offset)
 	{
@@ -68,13 +75,12 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Offset to retrieve
-	 * @link http://php.net/manual/en/arrayaccess.offsetget.php
-	 * @param mixed $offset <p>
-	 * The offset to retrieve.
-	 * </p>
-	 * @return mixed Can return all value types.
+	 * Возвращает значение по заданному смещению (ключу)
+	 * Данный метод исполняется, когда проверяется смещение (ключ)
+	 * на пустоту с помощью функции empty().
+	 * @link http://php.net/manual/ru/arrayaccess.offsetget.php
+	 * @param mixed $offset смещение (ключ) для возврата.
+	 * @return mixed
 	 */
 	public function offsetGet($offset)
 	{
@@ -82,15 +88,10 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Offset to set
-	 * @link http://php.net/manual/en/arrayaccess.offsetset.php
-	 * @param mixed $offset <p>
-	 * The offset to assign the value to.
-	 * </p>
-	 * @param mixed $value <p>
-	 * The value to set.
-	 * </p>
+	 * Устанавливает заданное смещение (ключ)
+	 * @link http://php.net/manual/ru/arrayaccess.offsetset.php
+	 * @param mixed $offset смещение (ключ), которому будет присваиваться значение.
+	 * @param mixed $value значение для присвоения.
 	 * @return void
 	 */
 	public function offsetSet($offset, $value)
@@ -99,12 +100,9 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	}
 
 	/**
-	 * (PHP 5 &gt;= 5.0.0)<br/>
-	 * Offset to unset
-	 * @link http://php.net/manual/en/arrayaccess.offsetunset.php
-	 * @param mixed $offset <p>
-	 * The offset to unset.
-	 * </p>
+	 * Удаляет смещение
+	 * @link http://php.net/manual/ru/arrayaccess.offsetunset.php
+	 * @param mixed $offset Смещение для удаления.
 	 * @return void
 	 */
 	public function offsetUnset($offset)
@@ -165,7 +163,7 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	 * @link http://www.php.net/manual/ru/sessionhandlerinterface.open.php
 	 * @param string $savePath путь для сохранения фала сессии.
 	 * @param string $sessionId идентификатор сессии.
-	 * @throws Exception
+	 * @throws \raggi\exceptions\Exception
 	 * @return bool <p>
 	 * Возвращаемое значение сессионного хранилища (обычно TRUE в случае успеха, FALSE в случае ошибки).
 	 * Данное значение возвращается обратно в PHP для внутренней обработки.
@@ -174,8 +172,8 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	public function open($savePath, $sessionId)
 	{
 		if ($this->getIsStarted())
-			throw new Exception('bla bla');
-		session_start();
+			throw new Exception('Повторное открытие сессии');
+		return session_start();
 	}
 
 	/**
@@ -190,7 +188,7 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	 */
 	public function read($sessionId)
 	{
-		// TODO: Implement read() method.
+		return '';
 	}
 
 	/**
@@ -209,14 +207,70 @@ class NativeHttpSession extends \raggi\base\BaseComponent implements SessionHand
 	 */
 	public function write($sessionId, $sessionData)
 	{
-		// TODO: Implement write() method.
+		return true;
 	}
 
 	/**
+	 * Возращает true, если сессия запущена
 	 * @return bool
 	 */
 	public function getIsStarted()
 	{
 		return session_id() != '';
+	}
+
+	/**
+	 * @param bool $destroy
+	 * @return bool
+	 */
+	public function regenerate($destroy = false)
+	{
+		return session_regenerate_id($destroy);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return session_id();
+	}
+
+	/**
+	 * @param $sessionId
+	 */
+	public function setId($sessionId)
+	{
+		session_id($sessionId);
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getName()
+	{
+		return session_name();
+	}
+
+	/**
+	 * @param $sessionName
+	 */
+	public function setName($sessionName)
+	{
+		session_name($sessionName);
+	}
+
+	public function getSavePath()
+	{
+		return session_save_path();
+	}
+
+	public function setSavePath($value)
+	{
+		if(is_dir($value))
+			session_save_path($value);
+		else
+			throw new CException(Yii::t('yii','CHttpSession.savePath "{path}" is not a valid directory.',
+				array('{path}'=>$value)));
 	}
 }
