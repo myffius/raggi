@@ -54,6 +54,7 @@ class NativeHttpSession extends BaseComponent implements SessionHandlerInterface
 	/**
 	 * Возвращает итератор для объекта сессии
 	 * @link http://php.net/manual/ru/iteratoraggregate.getiterator.php
+	 * @see \raggi\base\sessions\HttpSessionIterator $iterator
 	 * @return \raggi\base\sessions\HttpSessionIterator
 	 */
 	public function getIterator()
