@@ -1,7 +1,9 @@
 <?php
-class RParamsCollection extends RCollection
-{
 
+namespace raggi\collections;
+
+class ParamsCollection extends Collection
+{
 	public function __construct(array $collection = array())
 	{
 		$this->setCollection($collection);
