@@ -3,7 +3,7 @@
 namespace raggi\base;
 
 use \raggi\http\HttpRequest;
-use \raggi\exception\Exception;
+use \raggi\exceptions\Exception;
 
 /**
  * @property string $name;
