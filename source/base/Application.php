@@ -38,6 +38,7 @@ class Application extends BaseComponent
 	public function processRequest(HttpRequest $request)
 	{
 		$this->_request = $request;
+		// @var UrlRouter $urlRouter
 		$urlRouter = $this->createComponent('urlRouter');
 		$this->setComponent('urlRouter', $urlRouter);
 		list($controllerId, $actionId) = $urlRouter->parseUrl($request->getRequestUri());
