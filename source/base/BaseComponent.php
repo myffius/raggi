@@ -6,6 +6,8 @@ use \raggi\exceptions\Exception;
 
 class BaseComponent
 {
+	private $_application;
+	
 	public function __get($property)
 	{
 		$getter = 'get' . $property;
@@ -25,5 +27,20 @@ class BaseComponent
 	public function raiseEvent($sender)
 	{
 
+	}
+	
+	public function setApplication($application)
+	{
+		$this->_application = $application;
+	}
+
+	public function initialize($object, array $configuration)
+	{
+		foreach ($configuration as $property => $value)
+		{
+			$method = 'set'.$property;
+			if (method_exists($object, $method))
+				$object->$method($value);
+		}
 	}
 }
