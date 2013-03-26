@@ -28,10 +28,4 @@ abstract class UrlRouter
 	 */
 	abstract public function parseUrl($uri, $component = -1);
 	abstract public function createUrl($controller, $action, $params = array());
-
-	public function actionds()
-	{
-		parse_url()
-		$this->render('ds', array());
-	}
 }
